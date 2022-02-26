@@ -5,8 +5,8 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
         <title>Bundo Herbs</title>
-        <meta content="" name="description">
-        <meta content="" name="keywords">
+        <meta name="description" content="Herbal,Bundo, Jasa Penyedia, Rempah Rempah, Trend Import, Bahan Masak, Bahan Dapur, Bumbu Dapur, Nusantara, Hasil Bumi" />
+		<meta name="keywords" content="Herbal,Bundo, Jasa Penyedia, Rempah Rempah, Trend Import, Bahan Masak, Bahan Dapur, Bumbu Dapur, Nusantara, Hasil Bumi" />
 
         <!-- Favicons -->
         <link href="{{ asset('img/favicon.png') }}" rel="icon">
@@ -44,13 +44,13 @@
         <div class="container d-flex justify-content-center justify-content-md-between">
           <div class="contact-info d-flex align-items-center">
             <i class="bi bi-envelope d-flex align-items-center">
-              <a href="mailto:contact@example.com">info@bundoherbs.com</a></i>
+              <a href="mailto:contact@bundoherbs.com">contact@bundoherbs.com</a></i>
             <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62 89 5xxxx xx</span></i>
           </div>
           <div class="social-links d-none d-md-flex align-items-center">
-            <a href="#" class="youtube"><i class="bi bi-youtube"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.youtube.com" target="_blank" class="youtube"><i class="bi bi-youtube"></i></a>
+            <a href="https://www.facebook.com" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
             <!-- <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a> -->
           </div>
         </div>

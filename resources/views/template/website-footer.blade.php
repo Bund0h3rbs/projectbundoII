@@ -11,7 +11,7 @@
               Bekasi - DKI<br>
               INDONESIA <br><br>
               <strong>Phone:</strong> +62 8xx<br>
-              <strong>Email:</strong> info@bundoherbs.com<br>
+              <strong>Email:</strong><a href="mailto:contact@bundoherbs.com"> contact@bundoherbs.com</a><br>
             </p>
           </div>
 
@@ -40,9 +40,9 @@
             <h4>Our Social Networks</h4>
             <p>Kunjungi Kami Di Sosial Media Berikut Ini</p>
             <div class="social-links mt-3">
-              <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https://www.youtube.com" target="_blank" class="youtube"><i class="bx bxl-youtube"></i></a>
+              <a href="https://www.facebook.com" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="https://www.instagram.com" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
               <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
               <!-- <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
             </div>
