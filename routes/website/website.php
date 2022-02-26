@@ -25,7 +25,7 @@ Route::group(['prefix' => 'join_us', 'middleware' => ['web'], 'namespace'=>'App\
 });
 
 Route::group(['prefix' => 'about', 'middleware' => ['web'], 'namespace'=>'App\Http\Controllers\Website' ], function() {
-    Route::get('/', ['as' => 'about', 'uses' => 'aboutController@index']);
+    Route::get('/', ['as' => 'about', 'uses' => 'AboutController@index']);
 });
 
 Route::group(['prefix' => 'contact_me', 'middleware' => ['web'], 'namespace'=>'App\Http\Controllers\Website' ], function() {
