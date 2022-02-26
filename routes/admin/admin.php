@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 if(Request::is(['home','home/*'])){
     require __DIR__.'/home.php';
 
+}else if(Request::is(['menu_app','menu_app/*'])){
+        require __DIR__.'/menu_app.php';
+
 }else if(Request::is(['usr_adm','usr_adm/*'])){
     require __DIR__.'/usr_adm.php';
 

@@ -15,10 +15,13 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
+        $roleAkses = new App\Libs\Aksesrole;
+
+        $data = $roleAkses->aksesLink();
         $with['title_header'] = "Dashboard";
         return view($this->folder.'.index',$with);
     }
 
-    
+
 
 }

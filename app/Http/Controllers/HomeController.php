@@ -14,8 +14,16 @@ class HomeController extends Controller
 
     public function index()
     {
-        $with['title_header'] = "Dasboard";
-        return view($this->folder.'.index',$with);
+        $roleAkses = new \App\Libs\Aksesrole;
+
+        $type = $roleAkses->aksesLink();
+        if($type){
+            $with['title_header'] = "Dashboard";
+            return view($this->folder.'.index',$with);
+        }
+
+        // redirect()->logout();
+
     }
 
 }
