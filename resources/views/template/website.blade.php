@@ -21,8 +21,8 @@
         <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+        {{-- <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet"> --}}
+        {{-- <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet"> --}}
 
         <!-- Template Main CSS File -->
         <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet">
@@ -38,6 +38,43 @@
         .text-ijo{
           color:#0d9b54;
         }
+        .whatappicon {
+            position: fixed;
+            visibility: visible;
+            /* opacity: 0; */
+            right: 15px;
+            bottom: 45px;
+            z-index: 996;
+            /* background: #0d9b54; */
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            transition: all .4s;
+        }
+
+
+        .whatappicon .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        font-size:0.8em;
+        background-color: #FFF;
+        border:1px solid #0d9b54;
+        color: black;
+        text-align: center;
+        border-radius: 6px;
+        padding: 6px 3px;
+
+        /* Position the tooltip */
+        position: absolute;
+        right:50px;
+        bottom:15px;
+        z-index: 1;
+        }
+
+        .whatappicon:hover .tooltiptext {
+        visibility: visible;
+        }
+
     </style>
 <body>
     <section id="topbar" class="d-flex align-items-center bg-ijotuo">
@@ -45,7 +82,7 @@
           <div class="contact-info d-flex align-items-center">
             <i class="bi bi-envelope d-flex align-items-center">
               <a href="mailto:contact@bundoherbs.com">contact@bundoherbs.com</a></i>
-            <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62 89 5xxxx xx</span></i>
+            <i class="bi bi-phone d-flex align-items-center ms-4"><a href="https://api.whatsapp.com/send/?phone=628556591252&text=https://bundoherbs.com&app_absent=0" target="_blank"> <span>+628 556-591-252</span> </a></i>
           </div>
           <div class="social-links d-none d-md-flex align-items-center">
             <a href="https://www.youtube.com" target="_blank" class="youtube"><i class="bi bi-youtube"></i></a>
@@ -55,11 +92,14 @@
           </div>
         </div>
     </section>
+
     @include('template.website-menus')
         @yield('content')
     @include('template.website-footer')
     <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="https://api.whatsapp.com/send/?phone=628556591252&text=https://bundoherbs.com&app_absent=0" class="whatappicon d-flex align-items-center justify-content-center" target="_blank"><i class="bi bi-whatsapp" style="font-size:3em"></i>
+    <span class="tooltiptext">Chat VIA Whatapp</span></a>
+    {{-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> --}}
 
     <script src="{{ asset('assets/vendor/purecounter/purecounter.js')}}"></script>
     <script src="{{ asset('assets/vendor/aos/aos.js')}}"></script>

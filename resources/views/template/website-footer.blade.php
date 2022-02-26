@@ -10,7 +10,7 @@
               Jl. Suka Ramai <br>
               Bekasi - DKI<br>
               INDONESIA <br><br>
-              <strong>Phone:</strong> +62 8xx<br>
+              <strong>Phone:</strong> <a href="https://api.whatsapp.com/send/?phone=628556591252&text=https://bundoherbs.com&app_absent=0" target="_blank"> <span>+628 556-591-252</span> </a><br>
               <strong>Email:</strong><a href="mailto:contact@bundoherbs.com"> contact@bundoherbs.com</a><br>
             </p>
           </div>
