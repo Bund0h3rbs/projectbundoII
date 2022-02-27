@@ -79,8 +79,8 @@
         }
     }
  </style>
-  <body class="sidebar-mini layout-fixed">
-      <div class="wrapper">
+<body class="sidebar-mini layout-fixed">
+    <div class="wrapper">
           {{-- <div class="preloader flex-column justify-content-center align-items-center">
               <img class="animation__shake" src="{{asset('img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
           </div> --}}
@@ -99,7 +99,7 @@
                   @include('template.adm-menus-left')
               </div>
           </aside>
-          <div class="content-wrapper ">
+          <div class="content-wrapper">
               <div class="content-header text-sm">
                   <div class="container-fluid ">
                     <div class="row mb-2">
@@ -120,13 +120,13 @@
 
               <section class="content">
                   <div class="container-fluid">
-                  @yield('content')
+                    @yield('content')
                   </div>
               </section>
           </div>
-
+          @include('template.adm-side-profile')
           {{-- Footer --}}
-          <footer class="main-footer ">
+          <footer class="main-footer text-sm">
               <strong>Copyright &copy; 2021 <a href="javascript:;">VIEHS</a>.</strong>
               All rights reserved.
               <div class="float-right d-none d-sm-inline-block">
@@ -134,10 +134,8 @@
               </div>
           </footer>
 
-          @include('template.adm-side-profile')
-      </div>
 
-      <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-
-  </body>
+    </div>
+    <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+</body>
 </html>

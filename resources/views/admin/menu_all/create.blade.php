@@ -102,10 +102,9 @@
                 </select>
                 <span class="form-text text-muted-alert">Pilih salah satu (default Draf)</span>
             </div>
-
         </div>
       </div>
-     </div>
+    </div>
 
     <div class="card-footer">
         <input name="id" value="{{$data->id ?? null}}" type="hidden">

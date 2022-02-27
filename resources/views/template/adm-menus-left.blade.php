@@ -9,13 +9,13 @@
 
 <nav class="mt-2 text-sm">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-       
+
       {!! \App\Libs\Appmenus::instance()->getMenu() !!}
       <!--<li class="nav-header">-</li>-->
       <li class="nav-header"></li>
       <li class="nav-header">Bundoherbs &copy;{{ date('Y')}} </li>
 
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cogs"></i>
           <p>
@@ -71,7 +71,7 @@
           </li>
 
         </ul>
-      </li>
+      </li> --}}
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-building"></i>

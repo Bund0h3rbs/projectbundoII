@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Auth;
 
-class Menus_akses extends Model
+class Artikel_category extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'menus_akses';
+    protected $table = 'artikel_category';
     protected $guarded = ['id'];
     public static $rules = array(
         'name' => 'required'
@@ -26,17 +26,17 @@ class Menus_akses extends Model
         if (!empty($request->search['value'])) {
             $value = $request->search['value'];
             if($value == 'YA' ){
-                $data =  Menus_akses::where('status',1)
+                $data =  Artikel_category::where('active',1)
                  ->count();
             }else if($value == "Tidak"){
-                $data =  Menus_akses::where('status',2)
+                $data =  Artikel_category::where('active',2)
                 ->count();
             }else{
-                $data = Menus_akses::Where('name', 'LIKE', '%' . $value . '%')
+                $data = Artikel_category::Where('name', 'LIKE', '%' . $value . '%')
                     ->count();
             }
           }else {
-                 $data = Menus_akses::count();
+                 $data = Artikel_category::count();
         }
         return $data;
     }
@@ -45,14 +45,14 @@ class Menus_akses extends Model
         if (!empty($request->search['value'])){
             $value = $request->search['value'];
             if($value == 'YA' ){
-                $data =  Menus_akses::where('status',1);
+                $data =  Artikel_category::where('active',1);
             }else if($value == "Tidak"){
-                $data =  Menus_akses::where('status',2);
+                $data =  Artikel_category::where('active',2);
             }else{
-                $data = Menus_akses::Where('name', 'LIKE', '%' . $value . '%');
+                $data = Artikel_category::Where('name', 'LIKE', '%' . $value . '%');
             }
          }else {
-                $data = Menus_akses::select(['*']);
+                $data = Artikel_category::select(['*']);
         }
         return $data;
     }

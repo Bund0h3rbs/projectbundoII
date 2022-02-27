@@ -10,7 +10,8 @@ use Auth;
 class Akses_menu extends Model
 {
 	 protected $table = 'akses_menus';
-
+     protected $guarded = ['id'];
+     
      public function listkMenu($id){
 
         $query = $this->where('parent',null)

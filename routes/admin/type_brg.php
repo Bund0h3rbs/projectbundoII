@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Route;
 | Function : Route Profile Employee->admin
 */
 
-Route::group(['prefix' => 'type_brg', 'middleware' => ['auth'], 'namespace'=>'App\Http\Controllers\Administrator' ], function() {
+Route::group(['prefix' => 'produk_ref', 'middleware' => ['auth'], 'namespace'=>'App\Http\Controllers\Administrator' ], function() {
     Route::get('/', ['as' => 'Tipe Barang', 'uses' => 'TypeBarangController@index']);
-    Route::post('/create', ['as' => 'type_brg.create', 'uses' => 'TypeBarangController@create']);
-    Route::post('/getlist', ['as' => 'type_brg.getlist', 'uses' => 'TypeBarangController@getlist']);
-    Route::post('/store', ['as' => 'type_brg.store', 'uses' => 'TypeBarangController@store']);
+    Route::post('/create', ['as' => 'produk_ref.create', 'uses' => 'TypeBarangController@create']);
+    Route::post('/getlist', ['as' => 'produk_ref.getlist', 'uses' => 'TypeBarangController@getlist']);
+    Route::post('/store', ['as' => 'produk_ref.store', 'uses' => 'TypeBarangController@store']);
 });

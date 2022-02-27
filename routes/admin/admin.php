@@ -17,6 +17,12 @@ if(Request::is(['home','home/*'])){
 
 }else if(Request::is(['menu_app','menu_app/*'])){
         require __DIR__.'/menu_app.php';
+}else if(Request::is('menu_akses','menu_akses/*')){
+    require __DIR__.'/menu_akses.php';
+}else if(Request::is('artikel_cat','artikel_cat/*')){
+    require __DIR__.'/artikel_cat.php';
+}else if(Request::is('artikel_list','artikel_list/*')){
+    require __DIR__.'/artikel_list.php';
 
 }else if(Request::is(['usr_adm','usr_adm/*'])){
     require __DIR__.'/usr_adm.php';
@@ -24,7 +30,7 @@ if(Request::is(['home','home/*'])){
 }else if(Request::is(['usr_hakakses','usr_hakakses/*'])){
     require __DIR__.'/usr_hakakses.php';
 
-}else if(Request::is(['type_brg','type_brg/*'])){
+}else if(Request::is(['produk_ref','produk_ref/*'])){
     require __DIR__.'/type_brg.php';
 
 }else if(Request::is(['lokasi','lokasi/*'])){
