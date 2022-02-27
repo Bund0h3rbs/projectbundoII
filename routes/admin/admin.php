@@ -37,8 +37,8 @@ if(Request::is(['home','home/*'])){
     require __DIR__.'/klien.php';
 
 }else{
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
 }
 

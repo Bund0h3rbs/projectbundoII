@@ -5,19 +5,18 @@ namespace App\Http\Controllers\Administrator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Libs\Aksesrole;
-
 // Tabel & view
+use App\Libs\Aksesrole;
 use App\Models\Menus_app;
-use Modules\Admin\Entities\Tabel\Adm_rolemenus;
-use Modules\Admin\Entities\Tabel\Adm_akses;
-// use Modules\Admin\Entities\Views\Menus_app;
-
-
-
+use App\Models\Menus_akses;
+use App\Models\Menus_rolemenus;
 class MenusController extends Controller
 {
     protected $folder = 'admin.menu_all';
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -100,85 +99,72 @@ class MenusController extends Controller
         exit;
     }
 
-    function create(Request $request){
-
-        $with['menus'] = Adm_menus::nestedSelect();
+    function create(Request $request)
+    {
+        $datas = [];
+        if($request->id){
+            $datas = Menus_app::find($request->id);
+        }
+        $with['data']  = $datas;
+        $with['menus'] = Menus_app::nestedSelect();
         return view($this->folder.'.create', $with);
     }
 
-    function edit(Request $request){
-        $id = $request->input('id');
-        $with['menus'] = Adm_menus::nestedSelect();
-        $with['data'] = Adm_menus::find($id);
-
-        return view('admin::Menus.edit', $with);
-    }
-
     function addAkses(Request $request){
-        $id = $request->input('id');
-        $with['menus'] = Adm_menus::nestedSelect();
-        $with['menu'] = Adm_menus::find($id);
-        $with['akses'] = Adm_akses::all();
+        $id = $request->id;
+        $with['menus'] = Menus_app::nestedSelect();
+        $with['menu'] = Menus_app::find($id);
+        $with['akses'] = Menus_akses::all();
 
-        return view('admin::Menus.aksesrole', $with);
+        return view($this->folder.'.aksesrole', $with);
     }
 
     function store(Request $request){
         $input = $request->input();
-        $tbmenus = new Adm_menus();
 
         foreach ($input as $k => $v) //get value from $_POST
 		{
-			if(!in_array($k, array("_token")))
+			if(!in_array($k, array("_token","id")))
 			{
 				//if(!empty($input[$k])){
                     $row[$k]=$v;
                 //}
 			}
 		}
-        $saveMenus = $tbmenus->create($row);
-        $success = true;
-
-        echo json_encode(array("success"=>$success));
-
-    }
-
-    function update(Request $request){
-        $input = $request->input();
-        $id = $input['id'];
-        $tbmenus = new Adm_menus();
-
-        foreach ($input as $k => $v) //get value from $_POST
-		{
-			if(!in_array($k, array("_token",'id')))
-			{
-				//if(!empty($input[$k])){
-                    $row[$k]=$v;
-                //}
-			}
+        if($request->status == null){
+            $row['status'] = 'N';
+        }
+        // dd($row);
+        $saveMenus = Menus_app::find($request->id);
+        if($saveMenus){
+            // dd('kosng');
+            $saveMenus->update($row);
+        }else{
+            // dd('ada');
+            Menus_app::create($row);
         }
 
-        $saveMenus = $tbmenus->find($id);
-        $saveMenus->update($row);
         $success = true;
 
         echo json_encode(array("success"=>$success));
+
     }
 
+
     function delete(Request $request){
-        $tbmenus = new Adm_menus();
-        $input = $request->input('id');
-        $delete = $tbmenus->find($input);
-        $delete->delete();
+
+        $delete = Menus_app::find($request->id);
+        if($delete){
+            $delete->delete();
+        }
 
         $success = true;
         echo json_encode(array("success"=>$success));
     }
 
     function saveAkses(Request $request){
-        $input = $request->input();
-        $id = $input['id'];
-        $tbroleAkses = new Adm_rolemenus();
+        $input = $request->all();
+        $id = $request->id;
 
         foreach ($input as $k => $v) //get value from $_POST
 		{
@@ -191,47 +177,47 @@ class MenusController extends Controller
         }
 
 
-        if(isset($input['views'])){
-            $Cc    = count($input['views']);
+        if(isset($request->views)){
+            $Cc    = count($request->views);
 
 
-            $check_all = $tbroleAkses->where('menus_id',$id )
-            ->whereNotIn('akses_id',$input['views'])->delete();
+            $check_all = Menus_rolemenus::where('menus_id',$id )
+            ->whereNotIn('akses_id',$request->views)->delete();
 
             for ($i = 0; $i < $Cc; $i++) {
-                //$akses['akses_id'] = $input['akses_id'][$i];
+                //$akses['akses_id = $request->akses_id[$i];
                 $akses['menus_id'] = $id;
 
-                if(isset($input['views'][$i])){
-                    $akses['akses_id'] = $input['views'][$i];
+                if(isset($request->views[$i])){
+                    $akses['akses_id'] = $request->views[$i];
                     $akses['views'] = 1;
                 }
 
-                if(isset($input['creator'][$i])){
+                if(isset($request->creator[$i])){
                     $akses['creator'] = 1;
                 }else{
                     $akses['creator'] = "N";
                 }
-                if(isset($input['updater'][$i])){
+                if(isset($request->updater[$i])){
                     $akses['updater'] = 1;
                 }else{
                     $akses['updater'] = "N";
                 }
 
-                if(isset($input['deleted'][$i])){
+                if(isset($request->deleted[$i])){
                     $akses['deleted'] = 1;
                 }else{
                     $akses['deleted'] = "N";
                 }
 
                 //dd($check_all);
-                $check_akses = $tbroleAkses->where(['menus_id'=> $id ,'akses_id'=>$input['views'][$i]])->first();
+                $check_akses = Menus_rolemenus::where(['menus_id'=> $id ,'akses_id'=>$request->views[$i]])->first();
 
                 if(!empty($check_akses)){
-                    $saveakses =  $tbroleAkses->find($check_akses->id);
+                    $saveakses =  Menus_rolemenus::find($check_akses->id);
                     $saveakses->update($akses);
                 }else{
-                    $saveakses = $tbroleAkses->create($akses);
+                    $saveakses = Menus_rolemenus::create($akses);
                 }
 
             }

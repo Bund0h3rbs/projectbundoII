@@ -1,5 +1,6 @@
 @extends('template.template-admin')
-
+<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -48,6 +49,8 @@ $coldef = ['{targets: 0, width: "60px", className: "dt-right", orderable: true}'
 @endphp
 {!! \App\Libs\Helptbl_master::instance()->gettable($table, $recordsUrl, $coldef) !!}
 
+
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script>
     $('#addItems').click(function(){
         $.ajax({
@@ -75,7 +78,7 @@ function editMenu(id)
 {
 	$.ajax({
     type: "POST",
-    url: "{{route('menu.edit')}}",
+    url: "{{route('menu.create')}}",
 	data:{"_token": "{{ csrf_token() }}","id":id},
     beforeSend: function () {
         $('#defaultform').append('<div class="loader "><div class="loading"></div></div>');

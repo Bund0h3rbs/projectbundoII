@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
         <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+
+
         <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
         <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
         <script>

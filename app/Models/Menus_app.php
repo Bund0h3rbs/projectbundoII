@@ -16,8 +16,10 @@ class Menus_app extends Model
     use SoftDeletes;
 
     protected $table = 'menus_app';
+    protected $guarded = ['id'];
+
     public static $rules = array(
-        'code' => 'required',
+        // 'code' => 'required',
         'name' => 'required'
     );
 
@@ -29,7 +31,7 @@ class Menus_app extends Model
 
 
     public function setName($value) {
-        $this->attributes['title'] = $value;
+        $this->attributes['name'] = $value;
     }
 
     public function setCode($value) {
@@ -57,8 +59,8 @@ class Menus_app extends Model
                 $prefix .= '- ';
             }
 
-            $val->setName($prefix . $val->title);
-            $depts[$pi . '#id_' . $val->id] = $val->title;
+            $val->setName($prefix . $val->name);
+            $depts[$pi . '#id_' . $val->id] = $val->name;
         }
         ksort($depts);
         $result = array();
@@ -125,8 +127,8 @@ class Menus_app extends Model
                 $status = "Draf";
             }
 
-            $val->setName($prefix . $val->title);
-            $depts[$pi . '#id_' . $val->id] = $val->title .' ( '. $status .' )';
+            $val->setName($prefix . $val->name);
+            $depts[$pi . '#id_' . $val->id] = $val->name .' ( '. $status .' )';
         }
         ksort($depts);
         $result = array();
@@ -157,7 +159,7 @@ class Menus_app extends Model
         if (!empty($request->search['value'])){
             $value = $request->search['value'];
                 $data =  Menus_app::where('id', 'LIKE', '%' . $value . '%')
-                ->orWhere('title', 'LIKE', '%' . $value . '%')
+                ->orWhere('name', 'LIKE', '%' . $value . '%')
                 ->orWhere('modul', 'LIKE', '%' . $value . '%')
                 ->orWhere('link', 'LIKE', '%' . $value . '%');
          }else {
