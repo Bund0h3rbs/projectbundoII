@@ -19,10 +19,10 @@
                     <div class="col-lg-12">
                         <div class="col-lg-12 text-center">
                         @php
-                         $filename = $data->fileimage ?? null;
+                         $filename = isset($data->fileimage) ? $data->fileimage : null;
                          $path = Storage::url('artikel/'.$filename);
                         @endphp
-                        @if($data->fileimage != null)
+                        @if($filename != null)
                             <img class="img-fluid mb-3"
                             src="{{ $path }}"
                             alt="User profile picture" style="width:150px">
