@@ -68,15 +68,15 @@ $coldef = ['{targets: 0, width: "60px", className: "dt-right", orderable: true}'
            url:  "{{route('artikel_cat.create')}}",
            data: {"_token": "{{ csrf_token() }}"},
 		   beforeSend: function () {
-            $('#defaultform').append('<div class="loader "><div class="loading"></div></div>');
+            $('.loader').show();
 			},
            success: function(e)
            {
-            $('.loader').remove();
+            $('.loader').hide();
             $('#modal-form').modal('show');
 			$('#isi-form-modal').html(e);
             }, error: function (xhr, ajaxOptions, thrownError) {
-                $('.loader').remove();
+                $('.loader').hide();
                 Swal.fire("Warning!", "Terjadi Kesalahan Untuk mengakses menu ini, Segera hubungi Admin kami", "warning");
             }
         })
@@ -89,11 +89,11 @@ $coldef = ['{targets: 0, width: "60px", className: "dt-right", orderable: true}'
         url: "{{route('artikel_cat.create')}}",
         data:{"_token": "{{ csrf_token() }}","id":id},
         beforeSend: function () {
-            $('#defaultform').append('<div class="loader "><div class="loading"></div></div>');
+            $('.loader').show();
         },
         success: function(e)
            {
-            $('.loader').remove();
+            $('.loader').hide();
             $('#modal-form').modal('show');
 			$('#isi-form-modal').html(e);
             }, error: function (xhr, ajaxOptions, thrownError) {

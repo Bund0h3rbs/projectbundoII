@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'artikel_list', 'middleware' => ['auth'], 'namespace'=>'App\Http\Controllers\Administrator' ], function() {
-    Route::get('/', ['as' => 'Artikel Kat', 'uses' => 'ArtikelController@index']);
+    Route::get('/', ['as' => 'Artikel', 'uses' => 'ArtikelController@index']);
 
     Route::post('/create', ['as' => 'artikel.create', 'uses' => 'ArtikelController@create']);
     Route::post('/getlist',['as' => 'artikel.getlist', 'uses' => 'ArtikelController@getlist']);

@@ -16,11 +16,12 @@
         <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-        <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-
+        <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bundoherbs.css')}}">
 
         <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
         <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
         <script>
           $.widget.bridge('uibutton', $.ui.button)
         </script>
@@ -38,48 +39,16 @@
         <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
         <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
         <script src="{{ asset('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('js/bundoherbs.js') }}"></script>
     </head>
   <style>
-    .table-head{
-        width: 100%;
-        font-family: inherit;
-    }
-    .table-head th{
-        text-align: center;
-    }
-    .table-head th{
-        padding:10px;
-        font-size:0.9em;
-    }
 
-    .table-head td{
-        padding:0.4em;
-    }
-    .loader{
-            position:fixed;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0;
-            width:100%;
-            height:100%;
-            background: rgba(255, 253, 253, 0.6);
-            padding:20% 10% 0% 45%;
-            z-index:999999;
-        }
-    .img_load{
-        width:20%;
-    }
-    @media only screen and (max-width: 600px) {
-        .loader{
-            padding:30% 20% 0% 35%;
-        }
-        .img_load{
-            width:50%;
-        }
-    }
  </style>
 <body class="sidebar-mini layout-fixed">
+    <div class="loader" style="display:none">
+        <div class="loading"></div>
+        <span class="text-white">Harap Tunggu ...</div>
+    </div>
     <div class="wrapper">
           {{-- <div class="preloader flex-column justify-content-center align-items-center">
               <img class="animation__shake" src="{{asset('img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
@@ -136,6 +105,7 @@
 
 
     </div>
+
     <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 </body>
 </html>

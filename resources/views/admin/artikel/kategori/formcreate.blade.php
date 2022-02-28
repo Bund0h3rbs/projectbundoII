@@ -39,7 +39,7 @@
             <option value="1"> Active</option>
             <option value="0"> Non Active</option>
             </select>
-            <span class="form-text text-muted">Pilih Salah Satu (Default Non Active)</span>
+            <span class="form-text text-muted-alert">Pilih Salah Satu (Default Non Active)</span>
         </div>
       </div>
   </div>
@@ -102,23 +102,23 @@ function saveform(){
 			url: "{{route('artikel_cat.store')}}",
 			data: $("#form_create").serialize(), // serializes the form's elements.
 			beforeSend: function () {
-                $('#form_create').append('<div class="loader "><div class="loading"></div></div>');
+                $('.loader').show();
 			},
 			success: function(data)
 			{
-                $('.loader').remove();
+                $('.loader').hide();
 			 data = jQuery.parseJSON(data);
 			 if(data.success == true)
 			 {
                 $('#form_create')[0].reset();
-                Swal.fire("Success!", "Data Berhasil Disimpan", "success");
+                successTop();
                 $('#modal-form').modal('hide');
                 $('#table_default').DataTable().ajax.reload();
                 // $('#backItems').trigger('click');
 
 			 }
 			}, error: function (xhr, ajaxOptions, thrownError) {
-                $('.loader').remove();
+                $('.loader').hide();
                 if(xhr.status == 403){
                     Swal.fire("Warning!", "Anda tidak memiliki akses untuk melakukan aksi ini", "warning");
                 }else if(xhr.status == 404){
