@@ -158,7 +158,7 @@ class GlobalsHelpers {
             $image = $request->file('fileimage');
 
             $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = storage_path('app/public/'.$folder);
+            $destinationPath = public_path('img/'.$folder);
             $image->move($destinationPath, $imagename);
 
             // $list['file_link'] = $imagename;
