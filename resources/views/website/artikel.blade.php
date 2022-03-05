@@ -62,7 +62,7 @@
             @endif
 
           <h4>Artikel Terpopuler</h4>
-          <div class="row">
+          <div class="row" hidden>
               <div class="col-lg-4">
                 Satu
               </div>
