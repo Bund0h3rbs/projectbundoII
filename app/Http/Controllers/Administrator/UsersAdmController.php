@@ -151,8 +151,7 @@ class UsersAdmController extends Controller
         }
         $sPersonal = Personal::find($personal_id);
 
-        $user_update = Users::find($sPersonal->user_id ?? null);
-//  dd($user_update);
+        $user_update = Users::find($sPersonal->user_id);
         if($user_update){
             if($request->password){
                 $password = $request->password;
