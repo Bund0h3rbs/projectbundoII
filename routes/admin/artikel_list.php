@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | Control  : ArtikelController
 | Function : Route Kategori Artikel System
 */
-
+// dd(public_path());
 
 Route::group(['prefix' => 'artikel_list', 'middleware' => ['auth'], 'namespace'=>'App\Http\Controllers\Administrator' ], function() {
     Route::get('/', ['as' => 'Artikel', 'uses' => 'ArtikelController@index']);

@@ -3,7 +3,7 @@
 <div class="card-body text-sm">
   <div class="col-lg-12">
       <div class="form-group row">
-          <label class="col-form-label col-lg-3 col-sm-8">Nama Kategori<strong class="text-danger">*</strong></label>
+          <label class="col-form-label col-lg-3 col-sm-8">Nama<strong class="text-danger">*</strong></label>
           <div class="col-lg-5 col-md-8 col-sm-12">
             <div class="input-group">
               <div class="input-group-prepend">
@@ -13,7 +13,7 @@
               </div>
               <input type="text" class="form-control" id="name" name="name"  value="{{$data->name ?? null}}" placeholder="Menu Name">
             </div>
-            <span class="form-text text-muted-alert">Nama kategori artikel</span>
+            <span class="form-text text-muted-alert">Referensi Produk</span>
           <div class="fv-plugins-message-container"></div>
           </div>
       </div>
@@ -27,7 +27,7 @@
                 {!! $data->detail ?? '' !!}
             </textarea>
           </div>
-        <span class="form-text text-muted-alert">Ex: Kategori disesuaikan dengan fungsi yang dibutuhkan</span>
+        <span class="form-text text-muted-alert">Ex: Referensi disesuaikan dengan fungsi yang dibutuhkan</span>
         <div class="fv-plugins-message-container"></div>
         </div>
       </div>
@@ -99,7 +99,7 @@
 function saveform(){
     $.ajax({
 			type: "POST",
-			url: "{{route('artikel_cat.store')}}",
+			url: "{{route('produk_ref.store')}}",
 			data: $("#form_create").serialize(), // serializes the form's elements.
 			beforeSend: function () {
                 $('.loader').show();

@@ -30,5 +30,6 @@ Route::group(['prefix' => 'about', 'middleware' => ['web'], 'namespace'=>'App\Ht
 
 Route::group(['prefix' => 'contact_me', 'middleware' => ['web'], 'namespace'=>'App\Http\Controllers\Website' ], function() {
     Route::get('/', ['as' => 'contact_me', 'uses' => 'ContactController@index']);
+    Route::post('/pesan', ['as' => 'contact_me.pesan', 'uses' => 'ContactController@pesan']);
 });
 

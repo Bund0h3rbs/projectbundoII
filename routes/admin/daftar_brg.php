@@ -17,4 +17,5 @@ Route::group(['prefix' => 'daftar_brg', 'middleware' => ['auth'], 'namespace'=>'
     Route::post('/create', ['as' => 'daftar_brg.create', 'uses' => 'DaftarBarangController@create']);
     Route::post('/getlist', ['as' => 'daftar_brg.getlist', 'uses' => 'DaftarBarangController@getlist']);
     Route::post('/store', ['as' => 'daftar_brg.store', 'uses' => 'DaftarBarangController@store']);
+    Route::post('/delete', ['as' => 'daftar_brg.delete', 'uses' => 'DaftarBarangController@delete']);
 });

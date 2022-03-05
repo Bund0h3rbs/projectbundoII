@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('login', 'App\Http\Controllers\Auth\LoginController@create')->name('login');
-Route::post('login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::post('login_masuk', 'App\Http\Controllers\Auth\LoginController@login')->name('login_masuk');
 
 Route::post('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 

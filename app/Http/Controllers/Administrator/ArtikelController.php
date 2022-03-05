@@ -55,7 +55,7 @@ class ArtikelController extends Controller
         $end = $end > $iTotalRecords ? $iTotalRecords : $end;
 
         $filter = $tables->filterlist($request);
-        $listdata = $filter->skip($iDisplayStart)->take($iDisplayLength)->get();
+        $listdata = $filter->skip($iDisplayStart)->take($iDisplayLength)->orderBy('id','desc')->get();
 
         $data = [];
         $parentName = "-";

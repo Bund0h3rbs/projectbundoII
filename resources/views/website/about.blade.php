@@ -28,32 +28,23 @@
             <p>TENTANG KAMI</p>
             <h3>Bundo Herbs </h3>
             <p class="fst-italic">
-              Berbicara tentang hasil bumi indonesia, tentu tidak ada habisnya, Indonesia kaya akan hasil bumi yang beragam
-              mulai dari hasil Perkebunan, Budidaya Perairan hingga ke pertambangan,
+                Bundo HERBS adalah sebuah perusahaan yang menjual hasil Bumi Indonesia, berawal dari sebuah mimpi dan harapan dan untuk memasarkan hasil dari para petani Indonesia.
             </p>
-            <ul>
-              <li>
-                <i class="bx bx-store-alt"></i>
-                <div>
-                  <h5>Visi</h5>
-                  <p>Visi Foya</p>
-                </div>
-              </li>
-              <li>
-                <i class="bx bx-images"></i>
-                <div>
-                  <h5>Misi</h5>
-                  <p>Misi Foya</p>
-                </div>
-              </li>
-            </ul>
-            <p>
-              Visi Misi => FOYA FOYA
+            <p class="fst-italic">
+                Bundo HERBS terus berkolaborasi dengan para petani daerah agar para petani daerah mempunyai kesempatan menjual hasil pertanian ke luar Negeri. Bundo HERBS selalu selalu dan terus mendorong para petani daerah untuk menghasilkan hasil pertanian yang unggul dan berkualitas tinggi.
             </p>
           </div>
         </div>
 
       </div>
+    </section>
+
+    <section id="team" class="team section-bg p-1">
+        <div class="container" data-aos="fade-up">
+          <div class="section-title">
+            <h3><span>#Bikinpetanisenang </span></h3>
+          </div>
+        </div>
     </section>
 
     <section id="team" class="team section-bg">

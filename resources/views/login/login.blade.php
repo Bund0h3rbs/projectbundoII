@@ -1,7 +1,9 @@
 @extends('template.header-login')
 
 @section('content')
-{{ Form::open(array('route' =>'login')) }}
+{{ Form::open(array('route' =>'login_masuk')) }}
+{{-- <input type="hidden" name="_method" value="PUT"> --}}
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 <section class="vh-100">
     <div class="container-fluid h-custom">
@@ -92,11 +94,10 @@
       <!-- Right -->
     </div>
 </section>
-
 {{ Form::close()}}
 <script>
         $('#login-klik').click(function(){
-            var url = "{{ route('login')}}";
+            var url = "{{ route('login_masuk')}}";
             $.ajax({
             url: url,
             data: {

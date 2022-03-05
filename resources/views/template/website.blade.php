@@ -85,9 +85,9 @@
             <i class="bi bi-phone d-flex align-items-center ms-4"><a href="https://api.whatsapp.com/send/?phone=628556591252&text=https://bundoherbs.com&app_absent=0" target="_blank"> <span>+628 556-591-252</span> </a></i>
           </div>
           <div class="social-links d-none d-md-flex align-items-center">
-            <a href="https://www.youtube.com" target="_blank" class="youtube"><i class="bi bi-youtube"></i></a>
-            <a href="https://www.facebook.com" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/UCzcmogKdfODbJNitJN-wSJQ" target="_blank" class="youtube"><i class="bi bi-youtube"></i></a>
+            <a href="https://web.facebook.com/bundoherbs" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/bundoherbs" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
             <!-- <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a> -->
           </div>
         </div>
@@ -108,10 +108,11 @@
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
     <script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js')}}"></script>
-    <script src="{{ asset('assets/vendor/php-email-form/validate.js')}}"></script>
+    {{-- <script src="{{ asset('assets/vendor/php-email-form/validate.js')}}"></script> --}}
 
     <!-- Template Main JS File -->
-    <script src="{{ asset('assets/js/main.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('js/send_contact.js')}}"></script> --}}
+    <script type="text/javascript" src="{{ asset('assets/js/main.js')}}"></script>
 
 </body>
 </html>

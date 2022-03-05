@@ -2,7 +2,7 @@
 <input type="hidden" id="id" name="id" value="{{$data->id ?? null}}">
 <div class="card card-primary card-outline" >
     <div class="card-header">
-        <h3 class="card-title">New Artikel</h3>
+        <h3 class="card-title">Produk Baru</h3>
        <div class="card-tools">
             <button type="button" class="btn btn-block btn-outline-primary btn-sm" id="backItems">
             <i class="fa fa-angle-double-left "></i>
@@ -15,12 +15,12 @@
             <div class="col-12 col-md-12 col-lg-4 order-1 order-md-1">
                 <span><i class="fas fa-pencil-alt"></i> Form Judul</span><hr>
                 <div class="row">
-                    <label class="col-form-label col-lg-12">Cover</label>
+                    <label class="col-form-label col-lg-12">Gambar Produk</label>
                     <div class="col-lg-12">
                         <div class="col-lg-12 text-center">
                         @php
                          $filename = isset($data->fileimage) ? $data->fileimage : null;
-                         $path = asset('img/artikel/'.$filename);
+                         $path = asset('img/produk/'.$filename);
                         @endphp
                         @if($filename != null)
                             <img class="img-fluid mb-3"
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-form-label col-lg-12">Judul Artikel<strong class="text-danger">*</strong></label>
+                    <label class="col-form-label col-lg-12">Nama Produk<strong class="text-danger">*</strong></label>
                     <div class="col-lg-12">
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -55,9 +55,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-form-label col-lg-12">Kategori</label>
+                    <label class="col-form-label col-lg-12">Referensi Produk / Jenis</label>
                     <div class="col-md-12"><div class="input-group">
-                        <select class="form-control select2" style="width: 100%;" name="category_id" id="category_id" required>
+                        <select class="form-control select2" style="width: 100%;" name="produk_ref_id" id="produk_ref_id" required>
                         <option ></option>
                         @foreach ($kategori as $x => $val)
                             <option value="{{$x}}">{{$val}}</option>
@@ -93,22 +93,20 @@
                     <label class="col-form-label col-lg-12">Link</label>
                     <div class="col-lg-12">
                         <input type="text" class="form-control" id="link" name="link"  value="{{$data->link ?? null}}" placeholder="Link">
-                      <span class="form-text text-muted-alert">Tambahkan Jika artikel bukan milik pribadi</span>
+                      <span class="form-text text-muted-alert">Tambahkan Jika produk bukan milik pribadi</span>
                     <div class="fv-plugins-message-container"></div>
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-form-label col-lg-12">Description</label>
                     <div class="col-md-12">
-                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="description" id="description" placeholder="Place some text here" >
-                            {!! $data->description ?? '' !!}
-                        </textarea>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="description" id="description" placeholder="Place some text here" ></textarea>
                     </div>
                 </div>
             </div>
 
             <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
-                <span><i class="far fa-copy"></i> Isi Artikel</span><hr>
+                <span><i class="far fa-copy"></i> Detail Keterangan Produk</span><hr>
 
                 <textarea class="form-control text_editor" rows="6" placeholder="Enter ..." name="news" id="news" placeholder="Place some text here" >
                     @if($data)
@@ -145,11 +143,12 @@
 
 
   $(document).ready(function () {
+    $('#description').val('');
     @if($data)
         var status = "{{$data->active ?? null }}";
-        $('#category_id').val({{$data->category_id ?? null}}).trigger('change');
+        $('#produk_ref_id').val({{$data->produk_ref_id ?? null}}).trigger('change');
         $('#active').val(status).trigger('change');
-        // $('#description').val();
+        $('#description').val("{!! $data->description ?? null !!}");
     @endif
 
     $('.text_editor').summernote({
@@ -168,7 +167,7 @@
         minlength: 4,
         maxlength: 100
       },
-      category_id: {
+      produk_ref_id: {
         required: true,
       },
       active: {
@@ -182,7 +181,7 @@
       name: {
         required: "Masukan Judul artikel",
       },
-      category_id: {
+      produk_ref_id: {
         required: "Pilih Salah Satu",
       },
       category_id: "Please accept our terms"
@@ -205,7 +204,7 @@ function saveform(){
     var formData = new FormData($('#form_create')[0]);
     $.ajax({
 		type: 'POST',
-        url: "{{route('artikel.store')}}",
+        url: "{{route('daftar_brg.store')}}",
 		data: formData,
 		async: false,
 		cache: false,
