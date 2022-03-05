@@ -44,7 +44,7 @@
                         <p style="text-align:justify; font-size:0.9em" class="pt-2">
                             {!! substr($description,0,200) !!} ..
                         </p>
-                        <a href="#;" ><span class="text-danger" style="font-size:0.8em"> Selengkapnya ..</span></a>
+                        <a href="{{url('artikel/detail/'.$new->id)}}" ><span class="text-danger" style="font-size:0.8em"> Selengkapnya ..</span></a>
                         <br>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
             @if($artikel_right->count() > 0)
             <ul style="font-size:14px">
                 @foreach ($artikel_right as $right)
-                    <li>{{$right->name ?? null}}</li>
+                    <li><a href="{{url('artikel/detail/'.$right->id)}}" >{{$right->name ?? null}}</a></li>
                 @endforeach
             </ul>
             @else

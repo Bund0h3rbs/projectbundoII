@@ -20,7 +20,7 @@
                         <div class="col-lg-12 text-center">
                         @php
                          $filename = isset($data->fileimage) ? $data->fileimage : null;
-                         $path = asset('img/artikel/'.$filename);
+                         $path = asset('img/personal/'.$filename);
                         @endphp
                         @if($filename != null)
                             <img class="img-fluid mb-3"
@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-lg-12 mt-4">
                         <p><b>Note **</b></p>
-                        <p>Jika password kosong, <br>Maka Default password <b class="text-danger">U53rBunb0</b></p>
+                        <p>Jika password kosong, <br>Maka Default password <b class="text-danger">U53rBund0</b></p>
                     </div>
                 </div>
             </div>

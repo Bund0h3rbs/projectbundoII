@@ -140,18 +140,46 @@ class UsersAdmController extends Controller
 
         $personal = Personal::find($request->id);
         if($personal){
+           $this->updateUser($request, $request->id);
            $save_personal = $personal->update($row);
            $personal_id = $personal->id;
         }else{
-           $users = $this->storeUsers($request);
-           $row['user_id'] = $users->id;
+        //    $row['user_id'] = $users->id;
            $save_personal = Personal::create($row);
            $personal_id = $save_personal->id;
+           $this->storeUsers($request, $personal_id);
 
         }
-        $sPersonal = Personal::find($personal_id);
 
-        $user_update = Users::find($sPersonal->user_id);
+        $this->storeAkses($request->akses_id, $personal_id);
+
+        $success = true;
+        return json_encode(array("success"=>$success));
+
+    }
+
+
+    public function storeUsers($request, $personal_id)
+    {
+
+        $password = "U53rBund0";
+        if($request->password){
+            $password = $request->password;
+        }
+
+        $users = Users::create([
+            'name'  => $request->name,
+            'email' => $request->email,
+            'personal_id'=>$personal_id,
+            'password' => Hash::make($password),
+        ]);
+
+        return true;
+    }
+
+    public function updateUser($request, $personal_id)
+    {
+        $user_update = Users::where('personal_id',$personal_id)->first();
         if($user_update){
             if($request->password){
                 $password = $request->password;
@@ -161,30 +189,7 @@ class UsersAdmController extends Controller
             $users['personal_id'] = $personal_id;
             $user_update->update($users);
         }
-
-        $this->storeAkses($request->akses_id, $personal_id);
-
-        // dd($input);
-        $success = true;
-        return json_encode(array("success"=>$success));
-
-    }
-
-    function storeUsers($request)
-    {
-        // Check email dahulu
-        $password = "U53rBunb0";
-        if($request->password){
-            $password = $request->password;
-        }
-
-        $users = Users::create([
-            'name'  => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($password),
-        ]);
-
-        return $users;
+        return true;
     }
 
     function storeAkses($akses, $personal_id)

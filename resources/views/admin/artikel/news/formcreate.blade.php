@@ -154,7 +154,17 @@
 
     $('.text_editor').summernote({
         minHeight: 400,
-        // toolbar: false,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture']],
+            // ['view', ['fullscreen', 'codeview', 'help']],
+            ],
     })
   $.validator.setDefaults({
     submitHandler: function () {

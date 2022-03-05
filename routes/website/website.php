@@ -14,6 +14,7 @@ Route::get('/', 'App\Http\Controllers\Website\AwalController@index')->name('Bund
 
 Route::group(['prefix' => 'artikel', 'middleware' => ['web'], 'namespace'=>'App\Http\Controllers\Website' ], function() {
     Route::get('/', ['as' => 'artikel', 'uses' => 'ArtikelController@index']);
+    Route::get('/detail/{id}', ['as' => 'artikel.detail', 'uses' => 'ArtikelController@detail']);
 });
 
 Route::group(['prefix' => 'produk', 'middleware' => ['web'], 'namespace'=>'App\Http\Controllers\Website' ], function() {
