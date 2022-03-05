@@ -16,8 +16,8 @@ class HomeController extends Controller
     {
         $roleAkses = new \App\Libs\Aksesrole;
 
-        $type = $roleAkses->aksesLink();
-        if($type){
+        $cekAkses = $roleAkses->getAkses();
+        if ($cekAkses == true) {
             $with['title_header'] = "Dashboard";
             return view($this->folder.'.index',$with);
         }

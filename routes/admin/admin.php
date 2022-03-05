@@ -27,9 +27,6 @@ if(Request::is(['home','home/*'])){
 }else if(Request::is(['usr_adm','usr_adm/*'])){
     require __DIR__.'/usr_adm.php';
 
-}else if(Request::is(['usr_hakakses','usr_hakakses/*'])){
-    require __DIR__.'/usr_hakakses.php';
-
 }else if(Request::is(['produk_ref','produk_ref/*'])){
     require __DIR__.'/type_brg.php';
 

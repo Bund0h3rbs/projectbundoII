@@ -36,7 +36,7 @@ class Aksesrole {
             if($check_admrole->akses->type == 1){
                 $akses_devel = true;
             }
-            
+
         }
 
         return $akses_devel;

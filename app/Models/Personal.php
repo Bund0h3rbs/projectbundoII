@@ -25,9 +25,9 @@ class Personal extends Model
     //     return $this->belongsTo('App\Models\Artikel_category', 'id', 'category_id');
     // }
 
-    // public function personal() {
-    //     return $this->belongsTo('App\Models\User', 'personal_id', 'creator');
-    // }
+    public function akses() {
+        return $this->hasOne('App\Models\Adm_roleakses', 'user_id','id');
+    }
 
     // Serverside
     public function totaldata($request){
@@ -44,7 +44,7 @@ class Personal extends Model
                     ->count();
             }
           }else {
-                 $data = Personal::count();
+                 $data = Personal::where('id','!=','34')->count();
         }
         return $data;
     }
@@ -62,7 +62,7 @@ class Personal extends Model
          }else {
                 $data = Personal::select(['*']);
         }
-        return $data;
+        return $data->where('id','!=','34');
     }
 
 }

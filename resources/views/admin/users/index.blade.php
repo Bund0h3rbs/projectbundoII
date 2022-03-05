@@ -1,105 +1,141 @@
 @extends('template.template-admin')
-<style>
-     .table-head{
-         width: 100%;
-         font-family: inherit;
-     }
-    .table-head th{
-        text-align: center;
-    }
-    .table-head th{
-        padding:10px;
-        font-size:0.9em;
-    }
-
-    .table-head td{
-        padding:0.4em;
-    }
-
-</style>
 @section('content')
-<div class="card card-outline card-primary">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="far fa-list-alt"></i>
-        Daftar Users / Pengguna
-        </h3>
+<div class="row text-sm" id="defaultform">
+    <div class="col-md-12 order-2 order-md-1">
+        <div class="alert bg-warning-disabled ">
+          <div class="row">
+            <div class="col-lg-1 text-center">
+                <i class="fa fa-exclamation-triangle fa-3x"></i>
+            </div>
+            <div class="col-lg-8">
+                <h6>INFORMASI !!</h6>
+            Pengguna / User Adalah Administrator Aplikasi <br>
+            Harap Pastikan User yang terdaftar sudah memahami fungsi dan role proses sistem.
+            </div>
+          </div>
+        </div>
     </div>
-    <div class="card-body">
-        <table class="table-bordered table-head">
-            <thead class="bg-primary">
-                <tr >
-                    <th >No</th>
-                    <th>Action</th>
-                    <th>Kode</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Hak Akses</th>
-                    <th>Status</th>
-                    <th>Keterangan</th>
-                </tr>
-            </thead>
-            <tbody class="text-sm">
-                <tr>
-                    <td class="text-center">1</td>
-                    <td class="text-center">
-                        <a class="badge badge-warning p-2" title="Rubah Data">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <a class="badge badge-danger p-2" title="Hapus Data">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
-                    <td class="text-center">001</td>
-                    <td>Administrator Sistem</td>
-                    <td>adminsystem@gmail.com</td>
-                    <td>Administrator</td>
-                    <td class="text-center"><span class="badge badge-primary"> Aktif</span></td>
-                    <td>
-                        Create Date : 20-12-2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">2</td>
-                    <td class="text-center">
-                        <a class="badge badge-warning p-2" title="Rubah Data">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <a class="badge badge-danger p-2" title="Hapus Data">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
-                    <td class="text-center">002</td>
-                    <td>Vendor 1</td>
-                    <td>vendor1@gmail.com</td>
-                    <td>Vendor</td>
-                    <td class="text-center"><span class="badge badge-primary"> Aktif</span></td>
-                    <td>
-                        Create Date : 20-12-2021
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center">3</td>
-                    <td class="text-center">
-                        <a class="badge badge-warning p-2" title="Rubah Data">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        <a class="badge badge-danger p-2" title="Hapus Data">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
-                    <td class="text-center">003</td>
-                    <td>Santoso</td>
-                    <td>santoso@gmail.com</td>
-                    <td>Users / Pengguna</td>
-                    <td class="text-center"><span class="badge badge-primary"> Aktif</span></td>
-                    <td>
-                        Create Date : 20-12-2021
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="col-lg-12  order-1 order-md-2">
+        <div class="card card-primary card-outline" >
+            <div class="card-header">
+                <h3 class="card-title">List Pengguna</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-block btn-outline-primary btn-sm" id="addItems">
+                     <strong>Add Items</strong>
+                    <i class="fa fa-plus col-lg-2"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body text-sm">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped"  id="{{$table}}">
+                <thead class="bg-info">
+                 <tr>
+                  <th width="120px">Action</th>
+                  <th width="100px">Status</th>
+                  <th width="150px">Nama</th>
+                  <th >Email</th>
+                  <th >Gender</th>
+                  <th >Akses User</th>
+                 </tr>
+                 </thead>
+                </table>
+            </div>
+            </div>
+        </div>
     </div>
-    <div class="clearfix"></div>
 </div>
+<div class="row text-sm">
+    <div class="col-md-12" id="isiform"></div>
+</div>
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@php
+$recordsUrl = route('usr_adm.getlist');
+$coldef = ['{targets: 0, width: "60px", className: "dt-right", orderable: true}', '{targets: 0, orderable: false}'];
+@endphp
+{!! \App\Libs\Helptbl_master::instance()->gettable($table, $recordsUrl, $coldef) !!}
+<link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
+<link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+<script src="{{ asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
+
+<script >
+ $('#addItems').click(function(){
+
+    $.ajax({
+        type: "POST",
+        url:  "{{route('usr_adm.create')}}",
+        data: {"_token": "{{ csrf_token() }}"},
+        beforeSend: function () {
+        $('.loader').show();
+        },
+        success: function(e)
+        {
+        $('.loader').hide();
+        $('#defaultform').hide();
+        $('#isiform').html(e);
+        }, error: function (xhr, ajaxOptions, thrownError) {
+            $('.loader').hide();
+            errorTop();
+        }
+    })
+ })
+
+ function editMenu(id)
+    {
+        $.ajax({
+        type: "POST",
+        url: "{{route('usr_adm.create')}}",
+        data:{"_token": "{{ csrf_token() }}","id":id},
+        beforeSend: function () {
+            $('.loader').show();
+        },
+        success: function(e)
+           {
+            $('.loader').hide();
+            $('#defaultform').hide();
+            $('#isiform').html(e);
+            }, error: function (xhr, ajaxOptions, thrownError) {
+                $('.loader').remove();
+                errorTop();
+            }
+        })
+    };
+    function deletemenu(id)
+    {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Akses Aplikasi Akan di hapus!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete!"
+        }).then(function(result) {
+            if (result.value) {
+                $.ajax({
+                type: "POST",
+                url: "{{route('usr_adm.delete')}}",
+                data:{"id":id},
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(e)
+                {
+                e = jQuery.parseJSON(e);
+                    if(e.success == true)
+                    {
+                        successTop();
+                        $('#table_default').DataTable().ajax.reload();
+                    }
+                }, error: function (xhr, ajaxOptions, thrownError) {
+                    $('.loader').remove();
+                    errorTop();
+                }
+                })
+            }
+        });
+    };
+</script>
 @endsection

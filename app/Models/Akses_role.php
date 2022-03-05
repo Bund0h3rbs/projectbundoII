@@ -11,7 +11,7 @@ class Akses_role extends Model
 {
 	 protected $table = 'akses_role';
      protected $guarded = ['id'];
-     
+
      function check($id){
         $user =  Auth::user()->personal_id;
         $query = Akses_role::where('user_id', $user)

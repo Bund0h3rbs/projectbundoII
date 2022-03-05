@@ -150,6 +150,51 @@ class GlobalsHelpers {
 
     }
 
+    public function jenkeltype()
+    {
+        $jenkel = [
+            '1'=>'Laki - Laki',
+            '2'=> 'Perempuan'];
+
+        return $jenkel;
+    }
+    public function jenkel($id)
+    {
+        $jenkel = [
+            '1'=>'Laki - Laki',
+            '2'=> 'Perempuan'];
+
+        $jeniskelamin = $jenkel[$id];
+        return $jeniskelamin;
+    }
+
+    public function religiontype()
+    {
+        $agama = [
+            '1' =>'ISLAM',
+            '2' => 'KRISTEN',
+            '3' => 'PROTESTAN',
+            '4' => 'HINDU',
+            '5' => 'BUDHA',
+            '6' => 'KONGHUCU'];
+
+        return $agama;
+    }
+
+    public function religion($id)
+    {
+        $agama = [
+            '1' => 'ISLAM',
+            '2' => 'KRISTEN',
+            '3' => 'PROTESTAN',
+            '4' => 'HINDU',
+            '5' => 'BUDHA',
+            '6' => 'KONGHUCU'];
+
+        $religion = $agama[$id];
+        return $religion;
+    }
+
     public function uploadFile($request, $folder)
     {
         // $table_file = new  \Modules\Admin\Entities\Tabel_aplikasi\ms_file();

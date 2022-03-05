@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Administrator;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 use App\Libs\Aksesrole;
 use App\Libs\GlobalsHelpers;
 use Auth;
 use App\Models\Personal;
+use App\Models\Menus_akses;
+use App\Models\Users;
+use App\Models\Adm_roleakses;
+
 class UsersAdmController extends Controller
 {
     protected $folder = 'admin.users';
@@ -71,10 +76,10 @@ class UsersAdmController extends Controller
 
            $row[] = $tombol;
            $row[] = $status;
-           $row[] = $globaltools->tglIndo($x->publish_date);
            $row[] = "<div style='width:150px'>".$x->name."</div>";
-           $row[] = $x->Personal_ref->name ?? '-';
-           $row[] = $x->personal->name ?? '-';
+           $row[] = $x->email ?? null;
+           $row[] = isset($x->gender) ? $globaltools->jenkel($x->gender): '-';
+           $row[] = $x->akses->akses->name ?? '-';
 
 
             $records["data"][] = $row;
@@ -88,14 +93,19 @@ class UsersAdmController extends Controller
         echo json_encode($records);
         exit;
     }
+
     function create(Request $request)
     {
+        $globaltools = new GlobalsHelpers();
         $datas = [];
         if($request->id){
             $datas = Personal::find($request->id);
         }
-        $with['kategori'] = Personal_ref::pluck('name','id')->toArray();
-        $with['data']  = $datas;
+
+        $with['akses']    = Menus_akses::where('type','!=',1)->where('status','Y')->pluck('name','id')->toArray();
+        $with['agama']    = $globaltools->religiontype();
+        $with['jenkel']   = $globaltools->jenkeltype();
+        $with['data']     = $datas;
         return view($this->folder.'.formcreate', $with);
     }
 
@@ -104,26 +114,56 @@ class UsersAdmController extends Controller
         $globaltools = new GlobalsHelpers();
         $input = $request->all();
 
+        // dd($request->all());
         foreach ($input as $k => $v) //get value from $_POST
 		{
-			if(!in_array($k, array("_token","id","filename")))
+			if(!in_array($k, array("_token","id","filename","akses_id","password")))
 			{
                 $row[$k]=$v;
 			}
 		}
+
+        $row['created_by'] = Auth::user()->personal_id;
+
+        if($request->id == null){
+            $checkEmail = Personal::where('email',$request->email)->first();
+            if($checkEmail){
+                $with['success'] = false;
+                $with['pesan']   = "Email Telah Terdaftar";
+                return json_encode($with);
+            }
+        }
+
         if(isset($request->fileimage)){
             $row['fileimage'] = $globaltools->uploadFile($request, 'Personal');
         }
 
-        $row['publish_date'] = date('Y-m-d H:i:s');
-        $row['creator'] = Auth::user()->personal_id;
-
-        $saveMenus = Personal::find($request->id);
-        if($saveMenus){
-            $saveMenus->update($row);
+        $personal = Personal::find($request->id);
+        if($personal){
+           $save_personal = $personal->update($row);
+           $personal_id = $personal->id;
         }else{
-            Personal::create($row);
+           $users = $this->storeUsers($request);
+           $row['user_id'] = $users->id;
+           $save_personal = Personal::create($row);
+           $personal_id = $save_personal->id;
+
         }
+        $sPersonal = Personal::find($personal_id);
+
+        $user_update = Users::find($sPersonal->user_id ?? null);
+//  dd($user_update);
+        if($user_update){
+            if($request->password){
+                $password = $request->password;
+                $users['password'] = Hash::make($password);
+            }
+
+            $users['personal_id'] = $personal_id;
+            $user_update->update($users);
+        }
+
+        $this->storeAkses($request->akses_id, $personal_id);
 
         // dd($input);
         $success = true;
@@ -131,10 +171,47 @@ class UsersAdmController extends Controller
 
     }
 
+    function storeUsers($request)
+    {
+        // Check email dahulu
+        $password = "U53rBunb0";
+        if($request->password){
+            $password = $request->password;
+        }
+
+        $users = Users::create([
+            'name'  => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($password),
+        ]);
+
+        return $users;
+    }
+
+    function storeAkses($akses, $personal_id)
+    {
+        // Check email dahulu
+        $checkAkses = Adm_roleakses::where('user_id',$personal_id)->first();
+
+        $row['user_id']  = $personal_id;
+        $row['akses_id'] = $akses;
+        $row['active']   = 'Y';
+        if($checkAkses){
+            $checkAkses->update($row);
+        }
+
+        Adm_roleakses::create($row);
+
+        return true;
+    }
+
     function delete(Request $request)
     {
         $delete = Personal::find($request->id);
         if($delete){
+            Adm_roleakses::where('user_id',$request->id)->delete();
+            Users::where('personal_id',$request->id)->delete();
+
             $delete->delete();
         }
 
