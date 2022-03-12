@@ -31,10 +31,14 @@ class ArtikelController extends Controller
     public function detail(Request $request , $id)
     {
         $artikel   = Artikel::where('active',1)->find($id);
-
         if($artikel){
+            $next_artikel = Artikel::where('active',1)->where('id', '>', $id)->orderBy('id','asc')->first();
+            $prev_artikel = Artikel::where('active',1)->where('id', '<', $id)->orderBy('id','desc')->first();
+
             $with = $this->artikelComponen();
             $with['data'] = $artikel;
+            $with['next_artikel'] = $next_artikel;
+            $with['prev_artikel'] = $prev_artikel;
             return view($this->folder.'.detail.artikel_detail',$with);
         }
         return redirect()->back();
@@ -50,7 +54,6 @@ class ArtikelController extends Controller
 
         return $with;
     }
-
 
 
 }

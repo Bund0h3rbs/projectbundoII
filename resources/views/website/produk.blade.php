@@ -2,60 +2,68 @@
 
 @section('content')
 
-<style>
-    .product-img{
-     width:80%;
-     max-height: 200px;
-     margin-left: 10px;
-     margin-right: 10px;
-     padding-bottom: 10px;
-    }
 
-    .product-title{
-      font-size:1.1em;
-      font-weight: bold;
-      color:rgb(236, 175, 43);
-    }
-
-    .product-price {
-       font-size:0.9em;
-       font-weight:bold;
-       color:rgb(236, 175, 43);
-    }
-    .product-light {
-       font-size:0.8em;
-       font-weight:bold;
-       color:rgb(153, 152, 149);
-    }
-    .text-judul{
-      color:#000;
-      font-size:13px;
-    }
-</style>
 
 <main id="main" data-aos="fade-up">
      <section class="breadcrumbs">
          <div class="container">
-
            <div class="d-flex justify-content-between align-items-center">
              <h2>Produk</h2>
              <ol>
-               <li><a href="index.html">Home</a></li>
-               <li>Page Kosong</li>
+               <li><a href="{{'/'}}">Home</a></li>
+               <li>produk</li>
              </ol>
            </div>
-
          </div>
        </section><!-- End Breadcrumbs -->
 
        <section class="inner-page">
          <div class="container">
-         <div class="row">
-             <div class="col-lg-12">
-                 <!-- <div class="card"> -->
-                     <!-- <div class="card-header">
-                         <h5 class="text-title"><b> PRODUK TERLARIS</b></h5>
-                     </div> -->
+            <div class="row">
+                @if($produk_all->count()> 0)
+                @foreach ($produk_all as $new)
+                    @php
+                        $filename = isset($new->fileimage) ? $new->fileimage : null;
+                        $description = isset($new->description) ? htmlspecialchars_decode($new->description) : null;
+                        if($filename){
+                            $path = asset('img/produk/'.$filename);
+                        }else{
+                            $path = asset('img/bundo.png');
+                        }
+                    @endphp
+                <div class="col-lg-2 col-6 p-1">
+                    <a  href="{{url('produk/detail/'.$new->id)}}" class="card" style="border-radius:5px">
+                        <div class="card-body">
+                            <img src="{{$path}}" class="img-responsive product-img">
+                            <div class="text-sm" >
+                                <span class="product-light">{{$new->produk_ref->name ?? null}}</span>
+                                <div class="product-title-ket">
+                                    <h5 class="product-title">
+                                        {{$new->name ?? null}}
+                                    </h5>
+                                </div>
+                                <p class="text-judul">{{$new->description ?? null}}</p>
+                                <span class="btn btn-success btn-sm text-sm">Detail Produk</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                @endforeach
+                @else
+                <div class="alert alert-danger">
+                    <div class="row">
+                        <div class="col-lg-1 col-3 text-center">
+                            <i class="bi bi-exclamation-triangle" style="font-size:2em"></i>
+                        </div>
+                        <div class="col-lg-10 col-9">
+                            Maaf Produk Belum Diupdate
+                        </div>
+                    </div>
+                </div>
+                @endif
+            <div>
+
+             {{-- <div class="row">
                      <div class="card-body">
                          <div class="row">
                          <div class="col-lg-3 col-6">
@@ -133,8 +141,7 @@
                      </div>
                      <!-- </div> -->
                  </div>
-             </div>
-         </div>
+             </div> --}}
          </div>
        </section>
 </main>

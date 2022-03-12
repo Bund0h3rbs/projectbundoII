@@ -9,8 +9,8 @@
         <div class="d-flex justify-content-between align-items-center">
           <h3>Daftar Artikel</h3>
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Page Kosong</li>
+            <li><a href="{{'/'}}">Home</a></li>
+            <li>Artikel</li>
           </ol>
         </div>
 
@@ -76,7 +76,8 @@
           </div>
           <div class="col-lg-4">
             <div class="section-title pb-0">
-              <h4>Artikel Lainnya</h4>
+              <h5>Artikel Lainnya</h5>
+              <hr>
             </div>
             @if($artikel_right->count() > 0)
             <ul style="font-size:14px">
@@ -89,8 +90,10 @@
             @endif
             <p></p>
             @if($artikel_category)
-            <div class="section-title pb-0">
-                <h4>Artikel Lainnya</h4>
+            <div class="section-title p-0">
+                <hr>
+                <h5>Kategori Artikel</h5>
+                <hr>
             </div>
             <ul>
                 @foreach ($artikel_category as $cat)

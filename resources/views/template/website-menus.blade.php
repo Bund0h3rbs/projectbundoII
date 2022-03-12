@@ -4,7 +4,7 @@
       <h1 >
         <!-- <a href="index.html">BizLand<span>.</span></a> -->
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="index.html"c>
+      <a href="{{'/'}}">
         <img src="{{ asset('img/bundo.png') }}" alt="" width="130px"></a>
       </h1>
       <nav id="navbar" class="navbar">

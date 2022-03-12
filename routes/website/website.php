@@ -19,10 +19,12 @@ Route::group(['prefix' => 'artikel', 'middleware' => ['web'], 'namespace'=>'App\
 
 Route::group(['prefix' => 'produk', 'middleware' => ['web'], 'namespace'=>'App\Http\Controllers\Website' ], function() {
     Route::get('/', ['as' => 'produk', 'uses' => 'ProdukController@index']);
+    Route::get('/detail/{id}', ['as' => 'produk.detail', 'uses' => 'ProdukController@detail']);
 });
 
 Route::group(['prefix' => 'join_us', 'middleware' => ['web'], 'namespace'=>'App\Http\Controllers\Website' ], function() {
     Route::get('/', ['as' => 'join_us', 'uses' => 'JoinusController@index']);
+
 });
 
 Route::group(['prefix' => 'about', 'middleware' => ['web'], 'namespace'=>'App\Http\Controllers\Website' ], function() {

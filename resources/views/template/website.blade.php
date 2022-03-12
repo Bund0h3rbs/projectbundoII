@@ -75,6 +75,39 @@
         visibility: visible;
         }
 
+
+        .product-img{
+         width:80%;
+         max-height: 200px;
+         margin-left: 10px;
+         margin-right: 10px;
+         padding-bottom: 10px;
+        }
+
+        .product-title{
+          font-size:1.1em;
+          font-weight: bold;
+          color:rgb(236, 175, 43);
+        }
+
+        .product-price {
+           font-size:0.9em;
+           font-weight:bold;
+           color:rgb(236, 175, 43);
+        }
+        .product-light {
+           font-size:0.8em;
+           font-weight:bold;
+           color:rgb(153, 152, 149);
+        }
+        .text-judul{
+          color:#000;
+          font-size:13px;
+        }
+        .text-sm{
+            font-size:0.8em;
+        }
+
     </style>
 <body>
     <section id="topbar" class="d-flex align-items-center bg-ijotuo">
