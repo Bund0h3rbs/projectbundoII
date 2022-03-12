@@ -113,7 +113,7 @@ class DaftarBarangController extends Controller
 			}
 		}
         if(isset($request->fileimage)){
-            $row['fileimage'] = $globaltools->uploadFile($request, 'Produk');
+            $row['fileimage'] = $globaltools->uploadFile($request, 'produk');
         }
 
         $row['publish_date'] = date('Y-m-d H:i:s');
