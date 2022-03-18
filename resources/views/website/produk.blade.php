@@ -4,7 +4,7 @@
 
 
 
-<main id="main" data-aos="fade-up">
+<main id="main" >
      <section class="breadcrumbs">
          <div class="container">
            <div class="d-flex justify-content-between align-items-center">
@@ -18,11 +18,16 @@
        </section><!-- End Breadcrumbs -->
 
        <section class="inner-page">
-         <div class="container">
+         <div class="container" >
             <div class="row">
                 @if($produk_all->count()> 0)
+                @php
+                    $delay = 100;
+                    $ulang = 0;
+                @endphp
                 @foreach ($produk_all as $new)
                     @php
+
                         $filename = isset($new->fileimage) ? $new->fileimage : null;
                         $description = isset($new->description) ? htmlspecialchars_decode($new->description) : null;
                         if($filename){
@@ -31,10 +36,10 @@
                             $path = asset('img/bundo.png');
                         }
                     @endphp
-                <div class="col-lg-2 col-6 p-1">
+                <div class="col-lg-2 col-6 p-1"data-aos="fade-up" data-aos-delay="{{$delay + $ulang}}">
                     <a  href="{{url('produk/detail/'.$new->id)}}" class="card" style="border-radius:5px">
                         <div class="card-body">
-                            <img src="{{$path}}" class="img-responsive product-img">
+                            <img src="{{$path}}" class="img-responsive product-img" >
                             <div class="text-sm" >
                                 <span class="product-light">{{$new->produk_ref->name ?? null}}</span>
                                 <div class="product-title-ket">
@@ -48,6 +53,9 @@
                         </div>
                     </a>
                 </div>
+                    @php
+                        $ulang = $ulang+200;
+                    @endphp
                 @endforeach
                 @else
                 <div class="alert alert-danger">

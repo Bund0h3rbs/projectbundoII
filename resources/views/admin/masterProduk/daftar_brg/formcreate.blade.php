@@ -50,7 +50,7 @@
                         </div>
                         <input type="text" class="form-control" id="name" name="name"  value="{{$data->name ?? null}}" placeholder="Menu Name">
                       </div>
-                      <span class="form-text text-muted-alert">Nama akses aplikasi</span>
+                      <span class="form-text text-muted-alert text-sm">Nama Produk</span>
                     <div class="fv-plugins-message-container"></div>
                     </div>
                 </div>
@@ -65,18 +65,6 @@
                         </select>
                     </div></div>
                 </div>
-                {{-- <div class="row">
-                    <label class="col-form-label col-lg-12">Tanggal Pelaksanaan  <strong class="text-danger">*</strong></label>
-                    <div class="col-md-12">
-                        <div class="input-group date" id="start_date" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#start_date" required id="start_date" name="start_date">
-                            <div class="input-group-append" data-target="#start_date" data-toggle="datetimepicker">
-                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                            </div>
-                        </div>
-                        <span class="form-text text-muted-alert">Tanggal Mulai</span>
-                    </div>
-                </div> --}}
                 <div class="row">
                     <label class="col-form-label col-lg-12">Status</label>
                     <div class="col-md-12">
@@ -93,12 +81,12 @@
                     <label class="col-form-label col-lg-12">Link</label>
                     <div class="col-lg-12">
                         <input type="text" class="form-control" id="link" name="link"  value="{{$data->link ?? null}}" placeholder="Link">
-                      <span class="form-text text-muted-alert">Tambahkan Jika produk bukan milik pribadi</span>
+                      <span class="form-text text-muted-alert text-sm">Tambahkan Jika produk bukan milik pribadi</span>
                     <div class="fv-plugins-message-container"></div>
                     </div>
                 </div>
                 <div class="row">
-                    <label class="col-form-label col-lg-12">Description</label>
+                    <label class="col-form-label col-lg-12">Informasi Default Produk</label>
                     <div class="col-md-12">
                         <textarea class="form-control" rows="3" placeholder="Enter ..." name="description" id="description" placeholder="Place some text here" ></textarea>
                     </div>
@@ -107,7 +95,31 @@
 
             <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
                 <span><i class="far fa-copy"></i> Detail Keterangan Produk</span><hr>
-
+                <div class="row form-group">
+                  <label class="col-form-label col-lg-2">Bahan</label>
+                  <div class="col-lg-8">
+                      <input type="text" class="form-control" id="bahan" name="bahan"  value="{{$data->bahan ?? null}}" placeholder="bahan" maxlength="100">
+                    <span class="form-text text-muted-alert">Tambahkan Jika produk bukan milik pribadi</span>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <label class="col-form-label col-lg-2">Kualitas</label>
+                  <div class="col-lg-8">
+                      <input type="text" class="form-control" id="kualitas" name="kualitas"  value="{{$data->kualitas ?? null}}" placeholder="kualitas" maxlength="100">
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <label class="col-form-label col-lg-2">Di Kirim Dari</label>
+                  <div class="col-lg-8">
+                      <input type="text" class="form-control" id="sendfrom" name="sendfrom"  value="{{$data->sendfrom ?? null}}" placeholder="Pengiriman Asal" maxlength="100">
+                  </div>
+                </div>
+               
+                  <div class="col-form-label col-lg-12 p-0">
+                    <dt> Deskripsi Produk</dt>
+                    <hr>
+                  </div>
+                  
                 <textarea class="form-control text_editor" rows="6" placeholder="Enter ..." name="news" id="news" placeholder="Place some text here" >
                     @if($data)
                     {!! $data->news !!}

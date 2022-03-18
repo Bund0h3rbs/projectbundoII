@@ -39,7 +39,14 @@ if(Request::is(['home','home/*'])){
 }else if(Request::is(['klien_list','klien_list/*'])){
     require __DIR__.'/klien.php';
 
+}else if(Request::is(['suplier_join','suplier_join/*'])){
+    require __DIR__.'/suplier_join.php';
+
+}else if(Request::is(['suplier_contact','suplier_contact/*'])){
+    require __DIR__.'/suplier_contact.php';
+
 }else{
+    
     // Route::get('/', function () {
     //     return view('welcome');
     // });

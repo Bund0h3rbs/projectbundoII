@@ -20,7 +20,7 @@ class ContactController extends Controller
     public function pesan(Request $request)
     {
         $input = $request->all();
-
+        $date_now = date('Y-m-d');
         foreach ($input as $k => $v) //get value from $_POST
 		{
 			if(!in_array($k, array("_token","id","filename")))
@@ -32,6 +32,7 @@ class ContactController extends Controller
         if($request->name == null || $request->email == null){
             $success = false;
         }else{
+            $row['date'] = $date_now;
             Pesan_contact::create($row);
             $success = true;
         }

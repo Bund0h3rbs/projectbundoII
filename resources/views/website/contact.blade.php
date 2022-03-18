@@ -78,7 +78,7 @@
                 </div>
                 <div class="my-3">
                   <div class="loading">Loading</div>
-                  <div class="error-message"></div>
+                  <div class="error-messag text-sm"></div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
                 </div>
                 <div class="text-center"><button type="button" class="btn-submit" id="send_button">Send Message</button></div>

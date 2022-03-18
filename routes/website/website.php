@@ -24,6 +24,8 @@ Route::group(['prefix' => 'produk', 'middleware' => ['web'], 'namespace'=>'App\H
 
 Route::group(['prefix' => 'join_us', 'middleware' => ['web'], 'namespace'=>'App\Http\Controllers\Website' ], function() {
     Route::get('/', ['as' => 'join_us', 'uses' => 'JoinusController@index']);
+    Route::post('/register', ['as' => 'join_us.register', 'uses' => 'JoinusController@register']);
+
 
 });
 

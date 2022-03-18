@@ -51,8 +51,19 @@
         <div class="card-header">
             <h6 class="title">Spesifikasi Produk</h6>
         </div>
-        <div class="card-body">
-            {!! $data->news ?? null !!}
+        <div class="card-body  text-sm">
+            <div class="col-lg-12 ">
+                <label class="col-lg-2">Bahan</label>
+                <label class="col-lg-6">: {{ $data->bahan ?? '-' }}</label>
+            </div>
+            <div class="col-lg-12 ">
+                <label class="col-lg-2">Kualitas :</label>
+                <label class="col-lg-6">: {{ $data->kualitas ?? '-' }}</label>
+            </div>
+            <div class="col-lg-12 ">
+                <label class="col-lg-2">Di Kirim Dari :</label>
+                <label class="col-lg-6">: {{ $data->sendfrom ?? null }}</label>
+            </div>
         </div>
 
         <br/>
